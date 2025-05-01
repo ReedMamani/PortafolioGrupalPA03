@@ -1,0 +1,56 @@
+# Configuración Básica
+title: "Portafolio Grupal Profesional"
+description: "Acceso seguro a portafolios profesionales"
+baseurl: "" # Usar "/repo" si no es el repo principal
+url: "https://tusuario.github.io" # Reemplazar con tu URL real
+
+# Configuración Técnica
+theme: minima
+port: 4000
+timezone: America/Mexico_City
+future: false
+
+# Plugins Esenciales
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Configuración de Collections
+collections:
+  members:
+    output: true
+    permalink: /portfolio/:name/
+  users:
+    output: false # Los usuarios no generan páginas
+
+# Configuración de Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+  
+  - scope:
+      path: "portfolio"
+      type: "members"
+    values:
+      layout: "member"
+
+# Configuración ORM (para nuestra implementación personalizada)
+database:
+  members_path: "_data/members.json"
+  users_path: "_data/users.json"
+
+# Exclusions (importante para GitHub Pages)
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - Rakefile
+  - node_modules/
+  - vendor/
+  - .bundle/
+  - .github/
+  - _spec/
+  - lib/
+  - docker-compose.yml
