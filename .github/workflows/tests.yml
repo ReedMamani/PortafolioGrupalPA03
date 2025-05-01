@@ -1,0 +1,14 @@
+steps:
+- uses: actions/checkout@v3
+- name: Set up Ruby
+  uses: ruby/setup-ruby@v1
+  with:
+    ruby-version: '3.1'
+    bundler-cache: true
+- name: Add lib to load path
+  run: |
+    echo "Adding lib to load path"
+    ruby -e "puts $LOAD_PATH"
+    ruby -e "$LOAD_PATH.unshift(File.join(Dir.pwd, 'lib')); require 'models/database'"
+- name: Run tests
+  run: bundle exec rake
